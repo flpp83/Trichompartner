@@ -1,0 +1,197 @@
+[
+  {
+    "id": "gid://shopify/Menu/316282143046",
+    "handle": "main-menu",
+    "title": "Main menu",
+    "items": [
+      {
+        "id": "gid://shopify/MenuItem/792835424582",
+        "title": "Sklep",
+        "type": "CATALOG",
+        "url": "/collections/all",
+        "resourceId": null,
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835457350",
+        "title": "Szkolenia",
+        "type": "PAGE",
+        "url": "/pages/szkolenia",
+        "resourceId": "gid://shopify/Page/171487330630",
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835490118",
+        "title": "O nas",
+        "type": "PAGE",
+        "url": "/pages/o-nas",
+        "resourceId": "gid://shopify/Page/171487363398",
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835522886",
+        "title": "Wiedza",
+        "type": "HTTP",
+        "url": "/blogs/aktualnosci",
+        "resourceId": null,
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835555654",
+        "title": "Kontakt",
+        "type": "PAGE",
+        "url": "/pages/kontakt",
+        "resourceId": "gid://shopify/Page/171487428934",
+        "tags": []
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Menu/316282175814",
+    "handle": "footer",
+    "title": "Menu stopki",
+    "items": [
+      {
+        "id": "gid://shopify/MenuItem/792816320838",
+        "title": "Szukaj",
+        "type": "SEARCH",
+        "url": "/search",
+        "resourceId": null,
+        "tags": []
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Menu/316282208582",
+    "handle": "customer-account-main-menu",
+    "title": "Menu główne konta klienta",
+    "items": [
+      {
+        "id": "gid://shopify/MenuItem/792816353606",
+        "title": "Zamówienia",
+        "type": "CUSTOMER_ACCOUNT_PAGE",
+        "url": "https://shopify.com/99404316998/account/orders",
+        "resourceId": "gid://shopify/CustomerAccountPage/243563036998",
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792816386374",
+        "title": "Profil",
+        "type": "CUSTOMER_ACCOUNT_PAGE",
+        "url": "https://shopify.com/99404316998/account/profile",
+        "resourceId": "gid://shopify/CustomerAccountPage/243563069766",
+        "tags": []
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Menu/316288565574",
+    "handle": "footer-menu",
+    "title": "Footer menu",
+    "items": [
+      {
+        "id": "gid://shopify/MenuItem/792835588422",
+        "title": "Sklep",
+        "type": "CATALOG",
+        "url": "/collections/all",
+        "resourceId": null,
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835621190",
+        "title": "Szkolenia",
+        "type": "PAGE",
+        "url": "/pages/szkolenia",
+        "resourceId": "gid://shopify/Page/171487330630",
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835653958",
+        "title": "O nas",
+        "type": "PAGE",
+        "url": "/pages/o-nas",
+        "resourceId": "gid://shopify/Page/171487363398",
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835686726",
+        "title": "Podcasty",
+        "type": "PAGE",
+        "url": "/pages/podcasty",
+        "resourceId": "gid://shopify/Page/171487396166",
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835719494",
+        "title": "Kontakt",
+        "type": "PAGE",
+        "url": "/pages/kontakt",
+        "resourceId": "gid://shopify/Page/171487428934",
+        "tags": []
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Menu/316289876294",
+    "handle": "category-menu",
+    "title": "Category menu",
+    "items": [
+      {
+        "id": "gid://shopify/MenuItem/792835752262",
+        "title": "Brak porostu",
+        "type": "HTTP",
+        "url": "/collections/all",
+        "resourceId": null,
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835785030",
+        "title": "Keratozy",
+        "type": "HTTP",
+        "url": "/collections/all",
+        "resourceId": null,
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835817798",
+        "title": "Łojotok",
+        "type": "HTTP",
+        "url": "/collections/all",
+        "resourceId": null,
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835850566",
+        "title": "Sucha skóra głowy",
+        "type": "HTTP",
+        "url": "/collections/all",
+        "resourceId": null,
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835883334",
+        "title": "Wrażliwa skóra głowy",
+        "type": "HTTP",
+        "url": "/collections/all",
+        "resourceId": null,
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835916102",
+        "title": "Wypadanie włosów",
+        "type": "HTTP",
+        "url": "/collections/all",
+        "resourceId": null,
+        "tags": []
+      },
+      {
+        "id": "gid://shopify/MenuItem/792835948870",
+        "title": "Zniszczone włosy",
+        "type": "HTTP",
+        "url": "/collections/all",
+        "resourceId": null,
+        "tags": []
+      }
+    ]
+  }
+]

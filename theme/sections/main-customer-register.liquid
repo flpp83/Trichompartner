@@ -1,0 +1,160 @@
+<main class="home-body register-page">
+  <div class="split-layout register-layout">
+    <section class="split-media register-benefits">
+      <div class="register-benefit-list">
+        <article class="register-benefit-item">
+          <img src="{{ 'assety-extracted-vuesax-linear-star.png' | asset_url }}" alt="">
+          <h3>{{ section.settings.benefit_1 }}</h3>
+        </article>
+        <article class="register-benefit-item">
+          <img src="{{ 'assety-extracted-layout-242-vuesax-linear-heart.png' | asset_url }}" alt="">
+          <h3>{{ section.settings.benefit_2 }}</h3>
+        </article>
+        <article class="register-benefit-item">
+          <img src="{{ 'assety-extracted-layout-242-vuesax-linear-heart-tick.png' | asset_url }}" alt="">
+          <h3>{{ section.settings.benefit_3 }}</h3>
+        </article>
+        <article class="register-benefit-item">
+          <img src="{{ 'assety-extracted-vuesax-linear-book.png' | asset_url }}" alt="">
+          <h3>{{ section.settings.benefit_4 }}</h3>
+        </article>
+      </div>
+    </section>
+    <section class="split-copy">
+      <div style="width:min(100%,620px);">
+        <span class="tag">{{ section.settings.eyebrow }}</span>
+        <h1>{{ section.settings.title }}</h1>
+        {% form 'create_customer', class: 'form-card' %}
+          <div class="form-grid">
+            <div class="field full"><label for="RegisterFirstName">{{ section.settings.first_name_label }}</label><input id="RegisterFirstName" name="customer[first_name]" placeholder="{{ section.settings.first_name_placeholder }}"></div>
+            <div class="field full"><label for="RegisterEmail">{{ section.settings.email_label }}</label><input id="RegisterEmail" type="email" name="customer[email]" placeholder="{{ section.settings.email_placeholder }}"></div>
+            <div class="field"><label for="RegisterLastName">{{ section.settings.last_name_label }}</label><input id="RegisterLastName" name="customer[last_name]" placeholder="{{ section.settings.last_name_placeholder }}"></div>
+            <div class="field"><label for="RegisterCompany">{{ section.settings.company_label }}</label><input id="RegisterCompany" name="customer[note][company]" placeholder="{{ section.settings.company_placeholder }}"></div>
+            <div class="field full"><label for="RegisterPassword">{{ section.settings.password_label }}</label><input id="RegisterPassword" type="password" name="customer[password]" placeholder="{{ section.settings.password_placeholder }}"></div>
+            <div class="field full helper-note"><span>{{ section.settings.password_note }}</span></div>
+            <div class="field full register-submit"><button class="button" type="submit">{{ section.settings.submit_label }} <span aria-hidden="true">→</span></button></div>
+          </div>
+          {% if form.errors %}
+            <div class="muted" style="margin-top:14px;">{{ form.errors | default_errors }}</div>
+          {% endif %}
+        {% endform %}
+      </div>
+    </section>
+  </div>
+</main>
+
+{% schema %}
+{
+  "name": "Customer Register",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Rejestracja B2B"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Tytuł",
+      "default": "Zarejestruj się i dołącz do grona partnerów!"
+    },
+    {
+      "type": "text",
+      "id": "password_note",
+      "label": "Notatka o haśle",
+      "default": "Hasło musi zawierać minimum 8 znaków, cyfrę i jedną dużą literę."
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Benefit 1",
+      "default": "Klinicznie potwierdzone formuły"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Benefit 2",
+      "default": "Eksperckie wsparcie i konsultacje"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Benefit 3",
+      "default": "Rozwiązania na każde schorzenie"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4",
+      "label": "Benefit 4",
+      "default": "Szkolenia i wdrożenia dla gabinetów"
+    },
+    {
+      "type": "text",
+      "id": "first_name_label",
+      "label": "Label imienia",
+      "default": "Imię"
+    },
+    {
+      "type": "text",
+      "id": "first_name_placeholder",
+      "label": "Placeholder imienia",
+      "default": "Wpisz imię"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Label e-mail",
+      "default": "Twój adres e-mail"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Placeholder e-mail",
+      "default": "Wpisz adres e-mail"
+    },
+    {
+      "type": "text",
+      "id": "last_name_label",
+      "label": "Label nazwiska",
+      "default": "Nazwisko"
+    },
+    {
+      "type": "text",
+      "id": "last_name_placeholder",
+      "label": "Placeholder nazwiska",
+      "default": "Wpisz nazwisko"
+    },
+    {
+      "type": "text",
+      "id": "company_label",
+      "label": "Label salonu",
+      "default": "Nazwa salonu"
+    },
+    {
+      "type": "text",
+      "id": "company_placeholder",
+      "label": "Placeholder salonu",
+      "default": "Wpisz nazwę salonu"
+    },
+    {
+      "type": "text",
+      "id": "password_label",
+      "label": "Label hasła",
+      "default": "Hasło"
+    },
+    {
+      "type": "text",
+      "id": "password_placeholder",
+      "label": "Placeholder hasła",
+      "default": "Wpisz hasło"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Label przycisku",
+      "default": "Zarejestruj się"
+    }
+  ]
+}
+{% endschema %}

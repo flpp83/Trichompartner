@@ -1,0 +1,153 @@
+<main class="auth-layout-body">
+  {% assign category_menu = linklists[settings.category_menu] %}
+  {% assign popular_search_terms = settings.popular_search_terms | newline_to_br | split: '<br />' %}
+  {% assign popular_brands = settings.popular_brands | newline_to_br | split: '<br />' %}
+  <div class="search-topbar">
+    <div class="container">
+      <form action="{{ routes.search_url }}" method="get" class="search-topbar-input">
+        <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ section.settings.search_placeholder }}" aria-label="{{ section.settings.search_placeholder }}">
+      </form>
+    </div>
+  </div>
+  <div class="search-shell">
+    <div class="container">
+      <div class="search-panel search-panel-flat">
+        <div class="search-columns search-columns-wide">
+          <section class="search-list-block">
+            <h3>{{ section.settings.popular_terms_title }}</h3>
+            <ul class="search-link-list search-link-list-icon">
+              {% for term in popular_search_terms limit: 5 %}
+                {% assign clean_term = term | strip %}
+                {% if clean_term != blank %}
+                  <li><img src="{{ 'assety-extracted-vuesax-linear-book.png' | asset_url }}" alt=""><span>{{ clean_term }}</span></li>
+                {% endif %}
+              {% else %}
+                <li><img src="{{ 'assety-extracted-vuesax-linear-book.png' | asset_url }}" alt=""><span>szampon</span></li>
+                <li><img src="{{ 'assety-extracted-vuesax-linear-book.png' | asset_url }}" alt=""><span>wypadanie włosów</span></li>
+                <li><img src="{{ 'assety-extracted-vuesax-linear-book.png' | asset_url }}" alt=""><span>maski</span></li>
+                <li><img src="{{ 'assety-extracted-vuesax-linear-book.png' | asset_url }}" alt=""><span>alpha</span></li>
+                <li><img src="{{ 'assety-extracted-vuesax-linear-book.png' | asset_url }}" alt=""><span>nawilżenie</span></li>
+              {% endfor %}
+            </ul>
+          </section>
+          <section class="search-list-block">
+            <h3>{{ section.settings.popular_brands_title }}</h3>
+            <ul class="search-link-list">
+              {% for brand in popular_brands limit: 5 %}
+                {% assign clean_brand = brand | strip %}
+                {% if clean_brand != blank %}
+                  <li>{{ clean_brand }}</li>
+                {% endif %}
+              {% else %}
+                <li>Molecular Trichology</li><li>Nourkrin</li><li>Neofollics</li><li>Alcantara</li><li>Innovatis</li>
+              {% endfor %}
+            </ul>
+          </section>
+          <section class="search-list-block">
+            <h3>{{ section.settings.category_title }}</h3>
+            <ul class="search-link-list">
+              {% if category_menu.links != blank %}
+                {% for link in category_menu.links limit: 7 %}
+                  <li>{{ link.title }}</li>
+                {% endfor %}
+              {% else %}
+                <li>Brak porostu</li><li>Keratozy</li><li>Łojotok</li><li>Sucha skóra głowy</li><li>Wrażliwa skóra głowy</li><li>Wypadanie włosów</li><li>Zniszczone włosy</li>
+              {% endif %}
+            </ul>
+          </section>
+          <section class="search-products-block">
+            <h3>{{ section.settings.results_title }}</h3>
+            <div class="search-product-list">
+              {% for item in search.results limit: 4 %}
+                {% if item.object_type == 'product' %}
+                  <article class="search-product-row">
+                    <div class="search-product-media">
+                      {% if item.featured_image %}
+                        {{ item.featured_image | image_url: width: 240 | image_tag: alt: item.title }}
+                      {% endif %}
+                    </div>
+                    <div class="search-product-copy">
+                      <h4>{{ item.title }}</h4>
+                      <strong>{{ item.price | money }}</strong>
+                    </div>
+                    <a class="plus-badge" href="{{ item.url }}" aria-label="Zobacz">+</a>
+                  </article>
+                {% endif %}
+              {% else %}
+                {% for fallback_product in collections.all.products limit: 1 %}
+                  <article class="search-product-row">
+                    <div class="search-product-media">
+                      {% if fallback_product.featured_image %}
+                        {{ fallback_product.featured_image | image_url: width: 240 | image_tag: alt: fallback_product.title }}
+                      {% else %}
+                        <img src="{{ 'assety-img-product.png' | asset_url }}" alt="">
+                      {% endif %}
+                    </div>
+                    <div class="search-product-copy"><h4>{{ fallback_product.title }}</h4><strong>{{ fallback_product.price | money }}</strong></div>
+                    <a class="plus-badge" href="{{ fallback_product.url }}" aria-label="Zobacz">+</a>
+                  </article>
+                {% else %}
+                  <article class="search-product-row">
+                    <div class="search-product-media"><img src="{{ 'assety-img-product.png' | asset_url }}" alt=""></div>
+                    <div class="search-product-copy"><h4>{{ section.settings.empty_product_title }}</h4><strong>{{ section.settings.empty_product_price }}</strong></div>
+                    <button class="plus-badge" type="button" aria-label="Dodaj">+</button>
+                  </article>
+                {% endfor %}
+              {% endfor %}
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% schema %}
+{
+  "name": "Main Search B2B",
+  "settings": [
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Placeholder wyszukiwarki",
+      "default": "Szukaj produktów"
+    },
+    {
+      "type": "text",
+      "id": "popular_terms_title",
+      "label": "Tytuł popularnych fraz",
+      "default": "Popularne frazy"
+    },
+    {
+      "type": "text",
+      "id": "popular_brands_title",
+      "label": "Tytuł popularnych marek",
+      "default": "Popularne marki"
+    },
+    {
+      "type": "text",
+      "id": "category_title",
+      "label": "Tytuł kategorii problemów",
+      "default": "Problemy skóry głowy"
+    },
+    {
+      "type": "text",
+      "id": "results_title",
+      "label": "Tytuł wyników",
+      "default": "Wyniki wyszukiwania"
+    },
+    {
+      "type": "text",
+      "id": "empty_product_title",
+      "label": "Fallback tytułu produktu",
+      "default": "Produkt z katalogu"
+    },
+    {
+      "type": "text",
+      "id": "empty_product_price",
+      "label": "Fallback ceny produktu",
+      "default": "239,00 zł"
+    }
+  ]
+}
+{% endschema %}

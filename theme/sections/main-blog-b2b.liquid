@@ -1,0 +1,56 @@
+<main class="auth-layout-body">
+  <section class="page-hero">
+    <div class="container">
+      <span class="tag">{{ section.settings.eyebrow }}</span>
+      <h1>{{ blog.title | default: 'Wpisy blogowe' }}</h1>
+    </div>
+  </section>
+  <section class="section-tight">
+    <div class="container blog-grid">
+      {% for article in blog.articles limit: 9 %}
+        <article class="article-card{% if forloop.index <= 2 %} article-card-wide{% endif %}">
+          <a href="{{ article.url }}">
+            {% if article.image %}
+              {{ article.image | image_url: width: 900 | image_tag: alt: article.title }}
+            {% else %}
+              <img src="{{ 'assety-img-image-11.png' | asset_url }}" alt="">
+            {% endif %}
+          </a>
+          <div class="copy">
+            <span class="tag">{{ blog.title | default: 'Trychologia' }}</span>
+            <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+            <p class="muted">{{ article.excerpt_or_content | strip_html | truncate: 140 }}</p>
+          </div>
+        </article>
+      {% else %}
+        <article class="article-card article-card-wide"><img src="{{ 'assety-img-image-11.png' | asset_url }}" alt=""><div class="copy"><span class="tag">{{ section.settings.eyebrow }}</span><h3>{{ section.settings.empty_title }}</h3><p class="muted">{{ section.settings.empty_copy }}</p></div></article>
+      {% endfor %}
+    </div>
+  </section>
+</main>
+
+{% schema %}
+{
+  "name": "Main Blog B2B",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Blog"
+    },
+    {
+      "type": "text",
+      "id": "empty_title",
+      "label": "Tytuł fallbacku",
+      "default": "Jak prowadzić skuteczną konsultację trychologiczną?"
+    },
+    {
+      "type": "textarea",
+      "id": "empty_copy",
+      "label": "Treść fallbacku",
+      "default": "Praktyczny przewodnik po pierwszej rozmowie z klientem, diagnozie potrzeb i budowaniu planu terapii domowej."
+    }
+  ]
+}
+{% endschema %}

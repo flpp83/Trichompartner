@@ -1,0 +1,155 @@
+<main class="auth-layout-body">
+  {% assign featured_collection = collections[settings.cart_featured_collection] %}
+  {% if featured_collection == blank %}
+    {% assign featured_collection = collections.all %}
+  {% endif %}
+  <div class="cart-overlay-page">
+    <div class="cart-overlay-backdrop">
+      <section class="cart-overlay-content">
+        <div class="cart-overlay-grid">
+          <article class="cart-overlay-stage">
+            <div class="cart-stage-products">
+              <article class="cart-hero-card">
+                {% if section.settings.stage_image != blank %}
+                  {{ section.settings.stage_image | image_url: width: 1200 | image_tag: alt: featured_collection.title }}
+                {% else %}
+                  <img src="{{ 'assety-img-frame-1707482086.png' | asset_url }}" alt="">
+                {% endif %}
+                <a class="small-link" href="{{ routes.collections_url }}">{{ section.settings.stage_link_label }} <span aria-hidden="true">→</span></a>
+              </article>
+              <div class="cart-stage-copy">
+                <p class="eyebrow-blue">{{ section.settings.stage_eyebrow }}</p>
+                <h1>{% if featured_collection != blank %}{{ featured_collection.title }}{% else %}Polecane produkty{% endif %}</h1>
+                <div class="cart-stage-grid">
+                  {% for collection_product in featured_collection.products limit: 3 %}
+                    <article class="cart-stage-item">
+                      <button class="plus-badge" type="button" aria-label="Dodaj">+</button>
+                      {% if collection_product.featured_image %}
+                        {{ collection_product.featured_image | image_url: width: 500 | image_tag: alt: collection_product.title }}
+                      {% else %}
+                        <img src="{{ 'assety-img-frame-1707483183-8.png' | asset_url }}" alt="">
+                      {% endif %}
+                      <h3>{{ collection_product.title }}</h3>
+                      <strong>{{ collection_product.price | money }}</strong>
+                    </article>
+                  {% else %}
+                    <article class="cart-stage-item"><button class="plus-badge" type="button" aria-label="Dodaj">+</button><img src="{{ 'assety-img-frame-1707483183-8.png' | asset_url }}" alt=""><h3>{{ section.settings.empty_stage_title }}</h3><strong>{{ section.settings.empty_stage_price }}</strong></article>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </article>
+          <aside class="cart-drawer">
+            <div class="cart-drawer-head">
+              <h2>{{ section.settings.drawer_title }}</h2>
+              <a href="{{ routes.collections_url }}" aria-label="Zamknij">×</a>
+            </div>
+            <div class="cart-drawer-items">
+              {% for item in cart.items %}
+                <article class="cart-item">
+                  <div class="cart-item-media">
+                    {% if item.image %}
+                      {{ item.image | image_url: width: 220 | image_tag: alt: item.product.title }}
+                    {% endif %}
+                  </div>
+                  <div class="cart-item-copy">
+                    <h3>{{ item.product.title }}</h3>
+                    <strong>{{ item.final_line_price | money }}</strong>
+                    <div class="qty-switch"><span>−</span><span>{{ item.quantity }}</span><span>+</span></div>
+                  </div>
+                </article>
+              {% else %}
+                <article class="cart-item">
+                  <div class="cart-item-media"><img src="{{ 'assety-img-product.png' | asset_url }}" alt=""></div>
+                  <div class="cart-item-copy">
+                    <h3>{{ section.settings.empty_cart_title }}</h3>
+                    <strong>{{ section.settings.empty_cart_price }}</strong>
+                    <div class="qty-switch"><span>−</span><span>2</span><span>+</span></div>
+                  </div>
+                </article>
+              {% endfor %}
+            </div>
+            <div class="cart-summary-row"><span>{{ section.settings.summary_label }}</span><strong>{{ cart.total_price | money }}</strong></div>
+            <div class="cart-actions">
+              <a class="small-link" href="{{ routes.cart_url }}">{{ section.settings.cart_link_label }}</a>
+              <a class="button" href="/checkout">{{ section.settings.checkout_label }}</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+{% schema %}
+{
+  "name": "Main Cart B2B",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "stage_image",
+      "label": "Obraz strefy koszyka"
+    },
+    {
+      "type": "text",
+      "id": "stage_eyebrow",
+      "label": "Eyebrow strefy",
+      "default": "Strefa marki"
+    },
+    {
+      "type": "text",
+      "id": "stage_link_label",
+      "label": "Link nad produktami",
+      "default": "Wszystkie produkty"
+    },
+    {
+      "type": "text",
+      "id": "drawer_title",
+      "label": "Tytuł koszyka",
+      "default": "Koszyk"
+    },
+    {
+      "type": "text",
+      "id": "summary_label",
+      "label": "Label podsumowania",
+      "default": "Podsumowanie"
+    },
+    {
+      "type": "text",
+      "id": "cart_link_label",
+      "label": "Link do koszyka",
+      "default": "Zobacz koszyk"
+    },
+    {
+      "type": "text",
+      "id": "checkout_label",
+      "label": "Przycisk checkout",
+      "default": "Przejdź do podsumowania"
+    },
+    {
+      "type": "text",
+      "id": "empty_stage_title",
+      "label": "Fallback tytułu polecanego produktu",
+      "default": "The Trichology - Hair Loss Shampoo 250 ml"
+    },
+    {
+      "type": "text",
+      "id": "empty_stage_price",
+      "label": "Fallback ceny polecanego produktu",
+      "default": "210,00 zł"
+    },
+    {
+      "type": "text",
+      "id": "empty_cart_title",
+      "label": "Fallback tytułu produktu w koszyku",
+      "default": "Proteoglikany Suplement diety Nourkrin Woman"
+    },
+    {
+      "type": "text",
+      "id": "empty_cart_price",
+      "label": "Fallback ceny produktu w koszyku",
+      "default": "239,00 zł"
+    }
+  ]
+}
+{% endschema %}

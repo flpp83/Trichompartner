@@ -1,0 +1,58 @@
+<main class="article-page">
+  <section class="section-tight article-hero-band">
+    <div class="container">
+      <div class="article-hero-image">
+        {% if article.image %}
+          {{ article.image | image_url: width: 1400 | image_tag: alt: article.title }}
+        {% else %}
+          <img src="{{ 'assety-img-image-10.png' | asset_url }}" alt="">
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  <section class="section-tight article-copy-band">
+    <div class="container article-layout">
+      <article class="article-main-copy">
+        <p class="eyebrow-blue">{{ section.settings.eyebrow | default: blog.title }}</p>
+        <h1>{{ article.title }}</h1>
+        <div class="article-lead">{{ article.excerpt | default: article.content | strip_html | truncate: 220 }}</div>
+        <div>{{ article.content }}</div>
+      </article>
+      <aside class="article-sidebar-card">
+        <h3>{{ section.settings.sidebar_title }}</h3>
+        <ol>
+          {% for related_article in blog.articles limit: 6 %}
+            {% if related_article.id != article.id %}
+              <li><a href="{{ related_article.url }}">{{ related_article.title }}</a></li>
+            {% endif %}
+          {% else %}
+            <li>Wprowadzenie do tematu</li>
+            <li>Najważniejsze założenia</li>
+            <li>Praktyka gabinetowa</li>
+            <li>Plan działania</li>
+          {% endfor %}
+        </ol>
+      </aside>
+    </div>
+  </section>
+</main>
+
+{% schema %}
+{
+  "name": "Main Article B2B",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Trychologia"
+    },
+    {
+      "type": "text",
+      "id": "sidebar_title",
+      "label": "Tytuł sidebara",
+      "default": "Polecane wpisy"
+    }
+  ]
+}
+{% endschema %}

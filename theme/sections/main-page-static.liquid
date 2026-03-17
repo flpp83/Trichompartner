@@ -1,0 +1,18 @@
+<main class="{% if section.settings.body_class != blank %}{{ section.settings.body_class }}{% endif %}">
+  <div class="container" style="padding: 48px 0 80px;">
+    {{ page.content }}
+  </div>
+</main>
+
+{% schema %}
+{
+  "name": "Main Page Static",
+  "settings": [
+    {
+      "type": "text",
+      "id": "body_class",
+      "label": "Body class"
+    }
+  ]
+}
+{% endschema %}

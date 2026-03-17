@@ -1,0 +1,46 @@
+{
+  "current": {
+    "settings": {
+      "main_menu": "main-menu",
+      "footer_menu": "footer-menu",
+      "category_menu": "category-menu",
+      "partner_phone": "+48 732 059 134",
+      "partner_email": "zamowienia@trichopartner.pl",
+      "public_topbar_text": "Skontaktuj się z nami i zostań naszym Partnerem",
+      "partner_password_placeholder": "Hasło partnera",
+      "partner_cta_label": "Zostań partnerem",
+      "favorites_url": "\/pages\/ulubione",
+      "header_search_placeholder": "Szukaj produktów",
+      "contact_page_url": "\/pages\/kontakt",
+      "account_manager_name": "Klaudia Nowak",
+      "popular_search_terms": "szampon\nwypadanie włosów\nmaski\nalpha\nnawilżenie",
+      "popular_brands": "Molecular Trichology\nNourkrin\nNeofollics\nAlcantara\nInnovatis",
+      "podcast_blog_handle": "aktualnosci",
+      "footer_copyright": "Trichopartner – Wyższy poziom trychologii. Wszelkie prawa zastrzeżone."
+    },
+    "content_for_index": []
+  },
+  "presets": {
+    "Default": {
+      "settings": {
+        "main_menu": "main-menu",
+        "footer_menu": "footer-menu",
+        "category_menu": "category-menu",
+        "partner_phone": "+48 732 059 134",
+        "partner_email": "zamowienia@trichopartner.pl",
+        "public_topbar_text": "Skontaktuj się z nami i zostań naszym Partnerem",
+        "partner_password_placeholder": "Hasło partnera",
+        "partner_cta_label": "Zostań partnerem",
+        "favorites_url": "\/pages\/ulubione",
+        "header_search_placeholder": "Szukaj produktów",
+        "contact_page_url": "\/pages\/kontakt",
+        "account_manager_name": "Klaudia Nowak",
+        "popular_search_terms": "szampon\nwypadanie włosów\nmaski\nalpha\nnawilżenie",
+        "popular_brands": "Molecular Trichology\nNourkrin\nNeofollics\nAlcantara\nInnovatis",
+        "podcast_blog_handle": "aktualnosci",
+        "footer_copyright": "Trichopartner – Wyższy poziom trychologii. Wszelkie prawa zastrzeżone."
+      },
+      "content_for_index": []
+    }
+  }
+}

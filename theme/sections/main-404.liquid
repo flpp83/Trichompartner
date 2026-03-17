@@ -1,0 +1,51 @@
+<main class="auth-layout-body">
+  <section class="page-hero">
+    <div class="container">
+      <span class="tag">{{ section.settings.eyebrow }}</span>
+      <h1>{{ section.settings.title }}</h1>
+      <p class="muted" style="max-width: 640px;">{{ section.settings.copy }}</p>
+      <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+        <a class="button" href="{{ routes.root_url }}">{{ section.settings.home_label }}</a>
+        <a class="small-link" href="{{ routes.collections_url }}">{{ section.settings.catalog_label }}</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% schema %}
+{
+  "name": "Main 404",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "404"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Tytuł",
+      "default": "Nie znaleźliśmy tej strony"
+    },
+    {
+      "type": "textarea",
+      "id": "copy",
+      "label": "Opis",
+      "default": "Adres może być nieaktualny albo strona została przeniesiona. Wróć do strony głównej lub przejdź do katalogu produktów."
+    },
+    {
+      "type": "text",
+      "id": "home_label",
+      "label": "Przycisk strony głównej",
+      "default": "Wróć na stronę główną"
+    },
+    {
+      "type": "text",
+      "id": "catalog_label",
+      "label": "Link katalogu",
+      "default": "Przejdź do sklepu"
+    }
+  ]
+}
+{% endschema %}

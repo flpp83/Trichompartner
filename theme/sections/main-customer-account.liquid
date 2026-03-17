@@ -1,0 +1,247 @@
+<main class="auth-layout-body account-page">
+  {% assign account_manager_name = settings.account_manager_name | default: 'Klaudia Nowak' %}
+  <section class="page-hero">
+    <div class="container">
+      <span class="tag">{{ section.settings.eyebrow }}</span>
+      <h1>{{ section.settings.title }}</h1>
+      <p>{{ section.settings.lead }}</p>
+    </div>
+  </section>
+  <section class="section-tight">
+    <div class="container account-stats-grid">
+      <article class="account-card account-stat-card">
+        <h3>{{ section.settings.status_title }}</h3>
+        <strong>{{ section.settings.status_value }}</strong>
+        <p>{{ section.settings.status_copy }}</p>
+      </article>
+      <article class="account-card account-stat-card">
+        <h3>{{ section.settings.manager_title }}</h3>
+        <strong>{{ account_manager_name }}</strong>
+        <p>{{ section.settings.manager_copy }}</p>
+      </article>
+      <article class="account-card account-stat-card">
+        <h3>{{ section.settings.orders_title }}</h3>
+        <strong>{{ customer.orders_count }}</strong>
+        <p>{{ section.settings.orders_copy }}</p>
+      </article>
+    </div>
+  </section>
+  <section class="section-tight">
+    <div class="container account-grid">
+      <article class="account-card">
+        <h3>{{ section.settings.account_details_title }}</h3>
+        <table class="table">
+          <tr><th>{{ section.settings.name_label }}</th><td>{{ customer.name }}</td></tr>
+          <tr><th>{{ section.settings.email_label }}</th><td>{{ customer.email }}</td></tr>
+          <tr><th>{{ section.settings.address_label }}</th><td>{% if customer.default_address %}{{ customer.default_address.address1 }}, {{ customer.default_address.city }}{% else %}{{ section.settings.empty_address_label }}{% endif %}</td></tr>
+          <tr><th>{{ section.settings.status_label }}</th><td><span class="status-badge success">{{ section.settings.active_status_label }}</span></td></tr>
+        </table>
+      </article>
+      <article class="account-card">
+        <h3>{{ section.settings.actions_title }}</h3>
+        <p style="margin-bottom:20px;">{{ section.settings.actions_copy }}</p>
+        <div style="display:grid;gap:12px;">
+          <a class="button" href="{{ routes.collections_url }}">{{ section.settings.primary_action_label }}</a>
+          <a class="small-link" href="{{ settings.contact_page_url | default: '/pages/kontakt' }}">{{ section.settings.secondary_action_label }}</a>
+          <a class="small-link" href="{{ routes.account_logout_url }}">{{ section.settings.logout_label }}</a>
+        </div>
+      </article>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-head"><div><h2>{{ section.settings.history_title }}</h2></div></div>
+      <article class="account-card">
+        <table class="table">
+          <tr><th>{{ section.settings.order_number_label }}</th><th>{{ section.settings.order_date_label }}</th><th>{{ section.settings.order_status_label }}</th><th>{{ section.settings.order_total_label }}</th></tr>
+          {% for order in customer.orders %}
+            <tr>
+              <td>{{ order.name }}</td>
+              <td>{{ order.created_at | date: '%d.%m.%Y' }}</td>
+              <td>{{ order.fulfillment_status_label }}</td>
+              <td>{{ order.total_price | money }}</td>
+            </tr>
+          {% else %}
+            <tr><td colspan="4">{{ section.settings.empty_orders_label }}</td></tr>
+          {% endfor %}
+        </table>
+      </article>
+    </div>
+  </section>
+</main>
+
+{% schema %}
+{
+  "name": "Customer Account",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Konto B2B"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Tytuł",
+      "default": "Panel partnera"
+    },
+    {
+      "type": "textarea",
+      "id": "lead",
+      "label": "Lead",
+      "default": "Dane konta, status współpracy i historia zamówień w jednym miejscu."
+    },
+    {
+      "type": "text",
+      "id": "status_title",
+      "label": "Tytuł karty statusu",
+      "default": "Poziom partnera"
+    },
+    {
+      "type": "text",
+      "id": "status_value",
+      "label": "Wartość statusu",
+      "default": "Aktywny Partner B2B"
+    },
+    {
+      "type": "textarea",
+      "id": "status_copy",
+      "label": "Opis statusu",
+      "default": "Dostęp do cen, zamówień i materiałów wspierających sprzedaż."
+    },
+    {
+      "type": "text",
+      "id": "manager_title",
+      "label": "Tytuł karty opiekuna",
+      "default": "Twój opiekun"
+    },
+    {
+      "type": "textarea",
+      "id": "manager_copy",
+      "label": "Opis opiekuna",
+      "default": "Kontakt handlowy i wsparcie wdrożeniowe dla Twojego gabinetu."
+    },
+    {
+      "type": "text",
+      "id": "orders_title",
+      "label": "Tytuł karty zamówień",
+      "default": "Łączna liczba zamówień"
+    },
+    {
+      "type": "textarea",
+      "id": "orders_copy",
+      "label": "Opis zamówień",
+      "default": "Podgląd zamówień złożonych na koncie partnera."
+    },
+    {
+      "type": "text",
+      "id": "actions_title",
+      "label": "Tytuł szybkich akcji",
+      "default": "Szybkie akcje"
+    },
+    {
+      "type": "textarea",
+      "id": "actions_copy",
+      "label": "Opis szybkich akcji",
+      "default": "Przejdź do zamówień, sklepu lub skontaktuj się z opiekunem marki."
+    },
+    {
+      "type": "text",
+      "id": "primary_action_label",
+      "label": "Label głównej akcji",
+      "default": "Złóż zamówienie"
+    },
+    {
+      "type": "text",
+      "id": "secondary_action_label",
+      "label": "Label drugiej akcji",
+      "default": "Skontaktuj się z opiekunem"
+    },
+    {
+      "type": "text",
+      "id": "logout_label",
+      "label": "Label wylogowania",
+      "default": "Wyloguj się"
+    },
+    {
+      "type": "text",
+      "id": "account_details_title",
+      "label": "Tytuł danych konta",
+      "default": "Dane konta"
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "Label imienia i nazwiska",
+      "default": "Imię i nazwisko"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Label e-mail",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "address_label",
+      "label": "Label adresu",
+      "default": "Adres"
+    },
+    {
+      "type": "text",
+      "id": "empty_address_label",
+      "label": "Pusty adres",
+      "default": "Brak danych adresowych"
+    },
+    {
+      "type": "text",
+      "id": "status_label",
+      "label": "Label statusu",
+      "default": "Status"
+    },
+    {
+      "type": "text",
+      "id": "active_status_label",
+      "label": "Tekst aktywnego statusu",
+      "default": "Aktywne konto B2B"
+    },
+    {
+      "type": "text",
+      "id": "history_title",
+      "label": "Tytuł historii zamówień",
+      "default": "Historia zamówień"
+    },
+    {
+      "type": "text",
+      "id": "order_number_label",
+      "label": "Label numeru zamówienia",
+      "default": "Numer"
+    },
+    {
+      "type": "text",
+      "id": "order_date_label",
+      "label": "Label daty zamówienia",
+      "default": "Data"
+    },
+    {
+      "type": "text",
+      "id": "order_status_label",
+      "label": "Label statusu zamówienia",
+      "default": "Status"
+    },
+    {
+      "type": "text",
+      "id": "order_total_label",
+      "label": "Label kwoty zamówienia",
+      "default": "Kwota"
+    },
+    {
+      "type": "text",
+      "id": "empty_orders_label",
+      "label": "Pusta historia zamówień",
+      "default": "Brak zamówień na tym koncie."
+    }
+  ]
+}
+{% endschema %}

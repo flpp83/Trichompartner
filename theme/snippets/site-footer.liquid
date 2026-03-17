@@ -1,0 +1,96 @@
+{% assign auth_templates = 'collection,product,search,article,blog,cart,page-o-nas,page-kontakt,page-szkolenia,page-regulamin,page-podcasty,customers-account' | split: ',' %}
+{% assign template_key = template.name %}
+{% if template.directory == 'customers' %}
+  {% assign template_key = 'customers-' | append: template.name %}
+{% elsif template.suffix != blank %}
+  {% assign template_key = template.name | append: '-' | append: template.suffix %}
+{% endif %}
+{% assign is_auth = false %}
+{% if auth_templates contains template_key %}
+  {% assign is_auth = true %}
+{% endif %}
+{% assign footer_menu = linklists[settings.footer_menu] %}
+{% assign social_facebook = settings.social_facebook %}
+{% assign social_instagram = settings.social_instagram %}
+{% assign social_youtube = settings.social_youtube %}
+{% assign footer_copyright = settings.footer_copyright | default: 'Trichopartner – Wyższy poziom trychologii. Wszelkie prawa zastrzeżone.' %}
+
+{% if is_auth %}
+  <footer class="site-footer-alt">
+    <div class="container">
+      <div class="site-footer-alt-top">
+        <div class="footer-brand-lockup"><img class="footer-brand-mark" src="{{ 'assety-img-frame-1707482456.png' | asset_url }}" alt="{{ shop.name }}"></div>
+        <nav class="footer-inline-nav">
+          {% if footer_menu.links != blank %}
+            {% for link in footer_menu.links limit: 5 %}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {% endfor %}
+          {% else %}
+            <a href="{{ routes.collections_url }}">Sklep</a>
+            <a href="/pages/szkolenia">Szkolenia</a>
+            <a href="/pages/o-nas">O nas</a>
+            <a href="{{ routes.blogs_url }}">Wiedza</a>
+            <a href="/pages/kontakt">Kontakt</a>
+          {% endif %}
+        </nav>
+        <div class="footer-socials">
+          {% if social_facebook != blank %}
+            <a href="{{ social_facebook }}"><img src="{{ 'assety-extracted-icon-facebook.png' | asset_url }}" alt="Facebook"></a>
+          {% else %}
+            <img src="{{ 'assety-extracted-icon-facebook.png' | asset_url }}" alt="Facebook">
+          {% endif %}
+          {% if social_instagram != blank %}
+            <a href="{{ social_instagram }}"><img src="{{ 'assety-extracted-icon-instagram.png' | asset_url }}" alt="Instagram"></a>
+          {% else %}
+            <img src="{{ 'assety-extracted-icon-instagram.png' | asset_url }}" alt="Instagram">
+          {% endif %}
+          {% if social_youtube != blank %}
+            <a href="{{ social_youtube }}"><img src="{{ 'assety-extracted-icon-youtube.png' | asset_url }}" alt="YouTube"></a>
+          {% else %}
+            <img src="{{ 'assety-extracted-icon-youtube.png' | asset_url }}" alt="YouTube">
+          {% endif %}
+        </div>
+      </div>
+      <div class="site-footer-alt-bottom">© {{ 'now' | date: '%Y' }} {{ footer_copyright }}</div>
+    </div>
+  </footer>
+{% else %}
+  <footer class="site-footer-alt home-footer-compact">
+    <div class="container">
+      <div class="site-footer-alt-top">
+        <div class="footer-brand-lockup"><img class="footer-brand-mark" src="{{ 'assety-img-frame-1707482456.png' | asset_url }}" alt="{{ shop.name }}"></div>
+        <nav class="footer-inline-nav">
+          {% if footer_menu.links != blank %}
+            {% for link in footer_menu.links limit: 5 %}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {% endfor %}
+          {% else %}
+            <a href="{{ routes.collections_url }}">Sklep</a>
+            <a href="/pages/szkolenia">Szkolenia</a>
+            <a href="/pages/o-nas">O nas</a>
+            <a href="{{ routes.blogs_url }}">Wiedza</a>
+            <a href="/pages/kontakt">Kontakt</a>
+          {% endif %}
+        </nav>
+        <div class="footer-socials">
+          {% if social_facebook != blank %}
+            <a href="{{ social_facebook }}"><img src="{{ 'assety-extracted-icon-facebook.png' | asset_url }}" alt="Facebook"></a>
+          {% else %}
+            <img src="{{ 'assety-extracted-icon-facebook.png' | asset_url }}" alt="Facebook">
+          {% endif %}
+          {% if social_instagram != blank %}
+            <a href="{{ social_instagram }}"><img src="{{ 'assety-extracted-icon-instagram.png' | asset_url }}" alt="Instagram"></a>
+          {% else %}
+            <img src="{{ 'assety-extracted-icon-instagram.png' | asset_url }}" alt="Instagram">
+          {% endif %}
+          {% if social_youtube != blank %}
+            <a href="{{ social_youtube }}"><img src="{{ 'assety-extracted-icon-youtube.png' | asset_url }}" alt="YouTube"></a>
+          {% else %}
+            <img src="{{ 'assety-extracted-icon-youtube.png' | asset_url }}" alt="YouTube">
+          {% endif %}
+        </div>
+      </div>
+      <div class="site-footer-alt-bottom">© {{ 'now' | date: '%Y' }} {{ footer_copyright }}</div>
+    </div>
+  </footer>
+{% endif %}

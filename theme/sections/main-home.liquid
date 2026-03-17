@@ -1,0 +1,662 @@
+<main class="home-body">
+  {% assign featured_collection = collections[section.settings.featured_collection] %}
+  {% assign featured_blog = blogs[section.settings.featured_blog] %}
+  <section class="home-hero-section">
+    <div class="home-hero-full home-hero-frame">
+      {% if section.settings.hero_image != blank %}
+        {{ section.settings.hero_image | image_url: width: 2200 | image_tag: alt: section.settings.hero_alt | default: 'Wyższy poziom trychologii' }}
+      {% else %}
+        <img src="{{ 'assety-img-v2.png' | asset_url }}" alt="Wyższy poziom trychologii">
+      {% endif %}
+    </div>
+  </section>
+  <section class="section-tight">
+    <div class="logo-strip-wrap">
+      <div class="container logo-strip">
+        <div class="item">
+          {% if section.settings.logo_1 != blank %}
+            {{ section.settings.logo_1 | image_url: width: 420 | image_tag: alt: section.settings.logo_1_alt }}
+          {% else %}
+            <img src="{{ 'assety-extracted-layout-242-vector.png' | asset_url }}" alt="Molecular Trichology">
+          {% endif %}
+        </div>
+        <div class="item{% if section.settings.logo_2 != blank %} item-image{% endif %}">
+          {% if section.settings.logo_2 != blank %}
+            {{ section.settings.logo_2 | image_url: width: 420 | image_tag: alt: section.settings.logo_2_alt }}
+          {% else %}
+            <span class="text-brand">{{ section.settings.logo_2_text }}</span>
+          {% endif %}
+        </div>
+        <div class="item">
+          {% if section.settings.logo_3 != blank %}
+            {{ section.settings.logo_3 | image_url: width: 420 | image_tag: alt: section.settings.logo_3_alt }}
+          {% else %}
+            <img src="{{ 'assety-extracted-layout-242-logo-nourkrin-1.png' | asset_url }}" alt="Nourkrin">
+          {% endif %}
+        </div>
+        <div class="item">
+          {% if section.settings.logo_4 != blank %}
+            {{ section.settings.logo_4 | image_url: width: 420 | image_tag: alt: section.settings.logo_4_alt }}
+          {% else %}
+            <img src="{{ 'assety-extracted-layout-242-logo.png' | asset_url }}" alt="Neofollics">
+          {% endif %}
+        </div>
+        <div class="item">
+          {% if section.settings.logo_5 != blank %}
+            {{ section.settings.logo_5 | image_url: width: 420 | image_tag: alt: section.settings.logo_5_alt }}
+          {% else %}
+            <img src="{{ 'assety-extracted-layout-242-image-5.png' | asset_url }}" alt="Alcantara">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="home-section">
+    <div class="container partnership-grid">
+      <div>
+        <div class="partnership-photo">
+          {% if section.settings.partnership_image != blank %}
+            {{ section.settings.partnership_image | image_url: width: 1400 | image_tag: alt: section.settings.partnership_title }}
+          {% else %}
+            <img src="{{ 'assety-img-image.png' | asset_url }}" alt="Zespół Tricho Partner">
+          {% endif %}
+        </div>
+        <p class="intro-soft">{{ section.settings.partnership_intro }}</p>
+      </div>
+      <div class="partnership-copy">
+        <p class="eyebrow-blue">{{ section.settings.partnership_eyebrow }}</p>
+        <h2>{{ section.settings.partnership_title }}</h2>
+        <article class="benefit-card"><img src="{{ 'assety-extracted-vuesax-linear-star.png' | asset_url }}" alt=""><div><h3>{{ section.settings.partnership_benefit_1_title }}</h3><p>{{ section.settings.partnership_benefit_1_copy }}</p></div></article>
+        <article class="benefit-card"><img src="{{ 'assety-extracted-vuesax-linear-user-square.png' | asset_url }}" alt=""><div><h3>{{ section.settings.partnership_benefit_2_title }}</h3><p>{{ section.settings.partnership_benefit_2_copy }}</p></div></article>
+        <article class="benefit-card"><img src="{{ 'assety-extracted-vuesax-linear-setting-2.png' | asset_url }}" alt=""><div><h3>{{ section.settings.partnership_benefit_3_title }}</h3><p>{{ section.settings.partnership_benefit_3_copy }}</p></div></article>
+      </div>
+    </div>
+  </section>
+  <section class="home-section" style="padding-top:24px;">
+    <div class="container">
+      <div class="help-head">
+        <p class="eyebrow-blue">{{ section.settings.help_eyebrow }}</p>
+        <h2>{{ section.settings.help_title }}</h2>
+      </div>
+      <div class="help-grid">
+        {% assign benefit_blocks = section.blocks | where: 'type', 'benefit' %}
+        {% if benefit_blocks.size > 0 %}
+          {% for block in benefit_blocks %}
+            {% if block.settings.dark_card_image != blank %}
+              <article class="help-card dark" {{ block.shopify_attributes }}>
+                {{ block.settings.dark_card_image | image_url: width: 1000 | image_tag: alt: block.settings.title }}
+              </article>
+            {% else %}
+              <article class="help-card" {{ block.shopify_attributes }}>
+                <div class="iconbox">
+                  {% if block.settings.icon != blank %}
+                    {{ block.settings.icon | image_url: width: 160 | image_tag: alt: block.settings.title }}
+                  {% endif %}
+                </div>
+                <h3>{{ block.settings.title }}</h3>
+                <p>{{ block.settings.copy }}</p>
+              </article>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <article class="help-card"><div class="iconbox"><img src="{{ 'assety-extracted-layout-242-vuesax-linear-heart-tick.png' | asset_url }}" alt=""></div><h3>Doradztwo w sprzedaży</h3><p>Układamy proces terapii, aby każdy klient wybierał sprawdzone i dopasowane produkty.</p></article>
+          <article class="help-card"><div class="iconbox"><img src="{{ 'assety-extracted-vuesax-linear-book.png' | asset_url }}" alt=""></div><h3>Marketing gabinetu</h3><p>Pomagamy porządkować komunikację i lepiej realizować działania edukacyjne.</p></article>
+          <article class="help-card"><div class="iconbox"><img src="{{ 'assety-extracted-vuesax-linear-presention-chart.png' | asset_url }}" alt=""></div><h3>Rozwój strategiczny</h3><p>Pomagamy rozwijać nowe usługi i lepiej planować sprzedaż trychologiczną.</p></article>
+          <article class="help-card"><div class="iconbox"><img src="{{ 'assety-extracted-layout-242-vuesax-linear-box.png' | asset_url }}" alt=""></div><h3>Szkolenia</h3><p>Uczymy jak łączyć diagnozę z domknięciem sprzedaży bez nachalności.</p></article>
+          <article class="help-card"><div class="iconbox"><img src="{{ 'assety-extracted-layout-242-vuesax-linear-bag-happy.png' | asset_url }}" alt=""></div><h3>Szybka obsługa</h3><p>Wysyłka nawet w 24 godziny od złożenia zamówienia.</p></article>
+          <article class="help-card dark"><img src="{{ 'assety-extracted-layout-242-frame-1707481206.png' | asset_url }}" alt="Mentoring 1:1"></article>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  <section class="home-section" style="padding-top:10px;">
+    <div class="container">
+      <div class="steps-head">
+        <p class="eyebrow-blue">{{ section.settings.steps_eyebrow }}</p>
+        <h2>{{ section.settings.steps_title }}</h2>
+      </div>
+      <div class="steps-grid steps-timeline">
+        {% assign step_blocks = section.blocks | where: 'type', 'step' %}
+        {% if step_blocks.size > 0 %}
+          {% for block in step_blocks %}
+            <article class="step-card" {{ block.shopify_attributes }}>
+              <div class="stepno">{{ block.settings.step_label }}</div>
+              <div class="iconbox">
+                {% if block.settings.icon != blank %}
+                  {{ block.settings.icon | image_url: width: 160 | image_tag: alt: block.settings.title }}
+                {% endif %}
+              </div>
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.copy }}</p>
+            </article>
+          {% endfor %}
+        {% else %}
+          <article class="step-card"><div class="stepno">Krok 1</div><div class="iconbox"><img src="{{ 'assety-extracted-vuesax-linear-user-square.png' | asset_url }}" alt=""></div><h3>Rozmowa wstępna</h3><p>Poznajemy potrzeby Twojego gabinetu.</p></article>
+          <article class="step-card"><div class="stepno">Krok 2</div><div class="iconbox"><img src="{{ 'assety-extracted-layout-242-vuesax-linear-briefcase.png' | asset_url }}" alt=""></div><h3>Spotkanie biznesowe</h3><p>Ustalamy model współpracy i zakres wdrożenia.</p></article>
+          <article class="step-card"><div class="stepno">Krok 3</div><div class="iconbox"><img src="{{ 'assety-extracted-vuesax-linear-book.png' | asset_url }}" alt=""></div><h3>Szkolenie wdrożeniowe</h3><p>Porządkujemy wiedzę produktową i sprzedażową.</p></article>
+          <article class="step-card"><div class="stepno">Krok 4</div><div class="iconbox"><img src="{{ 'assety-extracted-vuesax-linear-setting-2.png' | asset_url }}" alt=""></div><h3>Onboarding partnera</h3><p>Aktywujemy konto i dostęp do strefy B2B.</p></article>
+          <article class="step-card"><div class="stepno">Krok 5</div><div class="iconbox"><img src="{{ 'assety-extracted-layout-242-vuesax-linear-heart.png' | asset_url }}" alt=""></div><h3>Wsparcie opiekuna</h3><p>Rozwijamy wyniki i kolejne działania gabinetu.</p></article>
+        {% endif %}
+      </div>
+      <div class="steps-cta"><a class="button" href="{{ settings.contact_page_url | default: '/pages/kontakt' }}">{{ section.settings.steps_cta_label }} <span aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+  <section class="home-section" style="padding-top:18px;">
+    <div class="container">
+      <div class="section-head-row">
+        <div class="help-head"><p class="eyebrow-blue">{{ section.settings.testimonials_eyebrow }}</p><h2>{{ section.settings.testimonials_title }}</h2></div>
+        <div class="testimonial-nav" aria-hidden="true"><button type="button">←</button><button type="button">→</button></div>
+      </div>
+      <div class="testimonial-grid">
+        {% assign testimonial_blocks = section.blocks | where: 'type', 'testimonial' %}
+        {% if testimonial_blocks.size > 0 %}
+          {% for block in testimonial_blocks %}
+            <article class="testimonial-tile testimonial-image-card" {{ block.shopify_attributes }}>
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: 1200 | image_tag: alt: block.settings.alt }}
+              {% endif %}
+            </article>
+          {% endfor %}
+        {% else %}
+          <article class="testimonial-tile testimonial-image-card"><img src="{{ 'assety-img-frame-1707483183.png' | asset_url }}" alt=""></article>
+          <article class="testimonial-tile testimonial-image-card"><img src="{{ 'assety-img-frame-1707483183-1.png' | asset_url }}" alt=""></article>
+          <article class="testimonial-tile testimonial-image-card"><img src="{{ 'assety-img-frame-1707483183-2.png' | asset_url }}" alt=""></article>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  {% if featured_collection != blank %}
+    <section class="home-section" style="padding-top: 8px;">
+      <div class="container">
+        <div class="section-head-row">
+          <div class="help-head">
+            <p class="eyebrow-blue">{{ section.settings.featured_collection_eyebrow }}</p>
+            <h2>{{ featured_collection.title }}</h2>
+          </div>
+          <a class="small-link" href="{{ featured_collection.url }}">{{ section.settings.featured_collection_link_label }} <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="product-grid">
+          {% for product in featured_collection.products limit: 4 %}
+            <article class="product-card">
+              <div class="image">
+                <a href="{{ product.url }}">
+                  {% if product.featured_image %}
+                    {{ product.featured_image | image_url: width: 640 | image_tag: alt: product.title }}
+                  {% else %}
+                    <img src="{{ 'assety-img-product.png' | asset_url }}" alt="">
+                  {% endif %}
+                </a>
+              </div>
+              <div class="copy">
+                <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+                <strong>{{ product.price | money }}</strong>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+  {% if featured_blog != blank %}
+    <section class="home-section" style="padding-top: 6px;">
+      <div class="container">
+        <div class="section-head-row">
+          <div class="help-head">
+            <p class="eyebrow-blue">{{ section.settings.featured_blog_eyebrow }}</p>
+            <h2>{{ featured_blog.title }}</h2>
+          </div>
+          <a class="small-link" href="{{ featured_blog.url }}">{{ section.settings.featured_blog_link_label }} <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="blog-grid">
+          {% for article in featured_blog.articles limit: 3 %}
+            <article class="article-card{% if forloop.first %} article-card-wide{% endif %}">
+              <a href="{{ article.url }}">
+                {% if article.image %}
+                  {{ article.image | image_url: width: 900 | image_tag: alt: article.title }}
+                {% else %}
+                  <img src="{{ 'assety-img-image-11.png' | asset_url }}" alt="">
+                {% endif %}
+              </a>
+              <div class="copy">
+                <span class="tag">{{ featured_blog.title }}</span>
+                <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+                <p class="muted">{{ article.excerpt_or_content | strip_html | truncate: 140 }}</p>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+  <section class="home-section" style="padding-top:8px;">
+    <div class="container contact-split">
+      <div class="contact-copy-wrap">
+        <div class="help-head">
+          <p class="eyebrow-blue">{{ section.settings.contact_eyebrow }}</p>
+          <h2>{{ section.settings.contact_title }}</h2>
+        </div>
+        <p class="contact-lead">{{ section.settings.contact_lead }}</p>
+        <div class="contact-card-row">
+          <article class="contact-panel mini contact-card-asset"><img src="{{ 'assety-extracted-contact-7-frame-1707482316.png' | asset_url }}" alt=""></article>
+          <article class="contact-photo-card"><img src="{{ 'assety-extracted-contact-7-image.png' | asset_url }}" alt=""></article>
+        </div>
+      </div>
+      <article class="contact-form contact-form-panel">
+        {% form 'contact', class: 'contact-form-grid' %}
+          <label><span>{{ section.settings.contact_name_label }}</span><input name="contact[name]" placeholder="{{ section.settings.contact_name_placeholder }}"></label>
+          <label><span>{{ section.settings.contact_email_label }}</span><input name="contact[email]" type="email" placeholder="{{ section.settings.contact_email_placeholder }}"></label>
+          <label class="full"><span>{{ section.settings.contact_company_label }}</span><input name="contact[company]" placeholder="{{ section.settings.contact_company_placeholder }}"></label>
+          <label class="full"><span>{{ section.settings.contact_message_label }}</span><textarea name="contact[body]" placeholder="{{ section.settings.contact_placeholder }}"></textarea></label>
+          <label class="full consent-line"><input type="checkbox"><span>{{ section.settings.contact_consent }}</span></label>
+          <div class="full"><button class="button" type="submit">{{ section.settings.contact_button_label }} <span aria-hidden="true">→</span></button></div>
+        {% endform %}
+      </article>
+    </div>
+  </section>
+</main>
+
+{% schema %}
+{
+  "name": "Main Home",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "hero_alt",
+      "label": "Hero alt",
+      "default": "Wyższy poziom trychologii"
+    },
+    {
+      "type": "text",
+      "id": "partnership_eyebrow",
+      "label": "Partnerstwo eyebrow",
+      "default": "Partnerstwo"
+    },
+    {
+      "type": "text",
+      "id": "partnership_title",
+      "label": "Partnerstwo tytuł",
+      "default": "Wymierne korzyści współpracy"
+    },
+    {
+      "type": "image_picker",
+      "id": "partnership_image",
+      "label": "Zdjęcie sekcji partnerstwa"
+    },
+    {
+      "type": "textarea",
+      "id": "partnership_intro",
+      "label": "Lead sekcji partnerstwa",
+      "default": "Produkty, technologie i wiedza, które pozwalają prowadzić skuteczne terapie i rozwijać rentowny gabinet. Od ponad 12 lat wspieramy trychologów i kosmetologów w codziennej pracy z klientem od diagnostyki, przez terapię, po rozwój biznesu."
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_1",
+      "label": "Logo 1"
+    },
+    {
+      "type": "text",
+      "id": "logo_1_alt",
+      "label": "Alt logo 1",
+      "default": "Molecular Trichology"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_2",
+      "label": "Logo 2"
+    },
+    {
+      "type": "text",
+      "id": "logo_2_alt",
+      "label": "Alt logo 2",
+      "default": "The Trichology"
+    },
+    {
+      "type": "text",
+      "id": "logo_2_text",
+      "label": "Fallback tekst logo 2",
+      "default": "thetrichology"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_3",
+      "label": "Logo 3"
+    },
+    {
+      "type": "text",
+      "id": "logo_3_alt",
+      "label": "Alt logo 3",
+      "default": "Nourkrin"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_4",
+      "label": "Logo 4"
+    },
+    {
+      "type": "text",
+      "id": "logo_4_alt",
+      "label": "Alt logo 4",
+      "default": "Neofollics"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_5",
+      "label": "Logo 5"
+    },
+    {
+      "type": "text",
+      "id": "logo_5_alt",
+      "label": "Alt logo 5",
+      "default": "Alcantara"
+    },
+    {
+      "type": "text",
+      "id": "partnership_benefit_1_title",
+      "label": "Korzyść 1 tytuł",
+      "default": "Skuteczne produkty"
+    },
+    {
+      "type": "textarea",
+      "id": "partnership_benefit_1_copy",
+      "label": "Korzyść 1 opis",
+      "default": "Certyfikowane produkty, badania naukowe i europejskie standardy bezpieczeństwa."
+    },
+    {
+      "type": "text",
+      "id": "partnership_benefit_2_title",
+      "label": "Korzyść 2 tytuł",
+      "default": "Dostęp do ekspertów"
+    },
+    {
+      "type": "textarea",
+      "id": "partnership_benefit_2_copy",
+      "label": "Korzyść 2 opis",
+      "default": "Opieka zespołu specjalistów i konsultacje wsparte praktyką gabinetową."
+    },
+    {
+      "type": "text",
+      "id": "partnership_benefit_3_title",
+      "label": "Korzyść 3 tytuł",
+      "default": "Nowoczesna technologia"
+    },
+    {
+      "type": "textarea",
+      "id": "partnership_benefit_3_copy",
+      "label": "Korzyść 3 opis",
+      "default": "Urządzenia diagnostyczne i dedykowane rozwiązania zabiegowe do skutecznych terapii."
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Polecana kolekcja na stronie głównej"
+    },
+    {
+      "type": "blog",
+      "id": "featured_blog",
+      "label": "Polecany blog na stronie głównej"
+    },
+    {
+      "type": "text",
+      "id": "featured_collection_eyebrow",
+      "label": "Eyebrow kolekcji polecanej",
+      "default": "Oferta B2B"
+    },
+    {
+      "type": "text",
+      "id": "featured_collection_link_label",
+      "label": "Link kolekcji polecanej",
+      "default": "Zobacz całą kolekcję"
+    },
+    {
+      "type": "text",
+      "id": "featured_blog_eyebrow",
+      "label": "Eyebrow bloga polecanego",
+      "default": "Wiedza"
+    },
+    {
+      "type": "text",
+      "id": "featured_blog_link_label",
+      "label": "Link bloga polecanego",
+      "default": "Przejdź do wpisów"
+    },
+    {
+      "type": "text",
+      "id": "help_eyebrow",
+      "label": "Eyebrow sekcji pomocy",
+      "default": "Wiedza, nie dystrybucja"
+    },
+    {
+      "type": "text",
+      "id": "help_title",
+      "label": "Tytuł sekcji pomocy",
+      "default": "W czym możemy pomóc?"
+    },
+    {
+      "type": "text",
+      "id": "steps_eyebrow",
+      "label": "Eyebrow sekcji kroków",
+      "default": "Prosty model działania"
+    },
+    {
+      "type": "text",
+      "id": "steps_title",
+      "label": "Tytuł sekcji kroków",
+      "default": "Jak wygląda współpraca z TrichoPartner?"
+    },
+    {
+      "type": "text",
+      "id": "steps_cta_label",
+      "label": "Label CTA kroków",
+      "default": "Rozpocznij współpracę"
+    },
+    {
+      "type": "text",
+      "id": "testimonials_eyebrow",
+      "label": "Eyebrow opinii",
+      "default": "Co o nas mówią?"
+    },
+    {
+      "type": "text",
+      "id": "testimonials_title",
+      "label": "Tytuł opinii",
+      "default": "Opinie naszych Partnerów"
+    },
+    {
+      "type": "text",
+      "id": "contact_eyebrow",
+      "label": "Kontakt eyebrow",
+      "default": "Kontakt"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Kontakt tytuł",
+      "default": "Skontaktuj się z nami"
+    },
+    {
+      "type": "text",
+      "id": "contact_name_label",
+      "label": "Label pola imię",
+      "default": "Twoje imię"
+    },
+    {
+      "type": "text",
+      "id": "contact_name_placeholder",
+      "label": "Placeholder pola imię",
+      "default": "Wpisz swoje imię"
+    },
+    {
+      "type": "text",
+      "id": "contact_email_label",
+      "label": "Label pola e-mail",
+      "default": "Twój adres e-mail"
+    },
+    {
+      "type": "text",
+      "id": "contact_email_placeholder",
+      "label": "Placeholder pola e-mail",
+      "default": "Wpisz adres e-mail"
+    },
+    {
+      "type": "text",
+      "id": "contact_company_label",
+      "label": "Label pola firmy",
+      "default": "Nazwa firmy"
+    },
+    {
+      "type": "text",
+      "id": "contact_company_placeholder",
+      "label": "Placeholder pola firmy",
+      "default": "Wpisz nazwę firmy"
+    },
+    {
+      "type": "text",
+      "id": "contact_message_label",
+      "label": "Label pola wiadomości",
+      "default": "Treść wiadomości"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_lead",
+      "label": "Kontakt lead",
+      "default": "W trychologii liczy się czas reakcji, dlatego odpowiadamy szybko. Każde zapytanie traktujemy priorytetowo i oddzwaniamy błyskawicznie."
+    },
+    {
+      "type": "text",
+      "id": "contact_placeholder",
+      "label": "Placeholder wiadomości",
+      "default": "Poproszę o ofertę Trichopartner"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_consent",
+      "label": "Treść zgody",
+      "default": "Wyrażam zgodę na kontakt w sprawie oferty współpracy i obsługi mojego zapytania przez zespół Trichopartner."
+    },
+    {
+      "type": "text",
+      "id": "contact_button_label",
+      "label": "Label przycisku",
+      "default": "Wyślij wiadomość"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Karta pomocy",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Ikona"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tytuł",
+          "default": "Doradztwo w sprzedaży"
+        },
+        {
+          "type": "textarea",
+          "id": "copy",
+          "label": "Opis",
+          "default": "Układamy proces terapii, aby każdy klient wybierał sprawdzone i dopasowane produkty."
+        },
+        {
+          "type": "image_picker",
+          "id": "dark_card_image",
+          "label": "Obraz ciemnej karty"
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "name": "Krok współpracy",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_label",
+          "label": "Etykieta kroku",
+          "default": "Krok 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Ikona"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tytuł",
+          "default": "Rozmowa wstępna"
+        },
+        {
+          "type": "textarea",
+          "id": "copy",
+          "label": "Opis",
+          "default": "Poznajemy potrzeby Twojego gabinetu."
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Opinia",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Obraz opinii"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Alt",
+          "default": "Opinia partnera"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main Home",
+      "blocks": [
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

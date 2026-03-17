@@ -1,0 +1,128 @@
+<main class="auth-layout-body">
+  <section class="section-tight product-screen">
+    <div class="container product-layout">
+      <div class="product-gallery">
+        <div class="product-stage">
+          {% if product.featured_image %}
+            {{ product.featured_image | image_url: width: 900 | image_tag: alt: product.title }}
+          {% else %}
+            <img src="{{ 'assety-img-product.png' | asset_url }}" alt="">
+          {% endif %}
+        </div>
+        <div class="thumb-row product-thumbs">
+          {% for media in product.media limit: 4 %}
+            {{ media | image_url: width: 300 | image_tag: alt: product.title }}
+          {% else %}
+            <img src="{{ 'assety-img-product.png' | asset_url }}" alt="">
+            <img src="{{ 'assety-img-product.png' | asset_url }}" alt="">
+            <img src="{{ 'assety-img-product.png' | asset_url }}" alt="">
+            <img src="{{ 'assety-img-product.png' | asset_url }}" alt="">
+          {% endfor %}
+        </div>
+      </div>
+      <article class="product-copy">
+        <p class="eyebrow-blue product-brand">{{ product.vendor | default: 'Molecular Trichology' }}</p>
+        <h1>{{ product.title | default: 'Delta Hair Loss Prevention Peeling 150 ml' }}</h1>
+        <div class="rating-row product-rating">
+          <img src="{{ 'assety-extracted-vuesax-linear-star.png' | asset_url }}" alt=""><img src="{{ 'assety-extracted-vuesax-linear-star.png' | asset_url }}" alt=""><img src="{{ 'assety-extracted-vuesax-linear-star.png' | asset_url }}" alt=""><img src="{{ 'assety-extracted-vuesax-linear-star.png' | asset_url }}" alt=""><img src="{{ 'assety-extracted-vuesax-linear-star.png' | asset_url }}" alt=""><span>{{ section.settings.rating_label }}</span>
+        </div>
+        <div class="product-body-copy">
+          {% if product.description != blank %}
+            {{ product.description }}
+          {% else %}
+            <p>{{ section.settings.description_fallback }}</p>
+          {% endif %}
+        </div>
+        <div class="product-purchase-block">
+          <div class="price product-price-large">{{ product.price | money }}</div>
+          <div class="product-buy-row">
+            <div class="qty-switch product-qty"><span>−</span><span>1</span><span>+</span></div>
+            {% form 'product', product %}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button class="button product-main-cta" type="submit">{{ section.settings.add_to_cart_label }} <span aria-hidden="true">→</span></button>
+            {% endform %}
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-head"><div><h2>{{ section.settings.related_title }}</h2></div></div>
+      <div class="product-grid">
+        {% assign related_collection = product.collections.first %}
+        {% if related_collection != blank %}
+          {% for related_product in related_collection.products limit: 4 %}
+            {% if related_product.id != product.id %}
+              <article class="product-card">
+                <div class="image">
+                  <a href="{{ related_product.url }}">
+                    {% if related_product.featured_image %}
+                      {{ related_product.featured_image | image_url: width: 500 | image_tag: alt: related_product.title }}
+                    {% endif %}
+                  </a>
+                </div>
+                <div class="copy">
+                  <h3><a href="{{ related_product.url }}">{{ related_product.title }}</a></h3>
+                  <p class="muted">{{ related_product.vendor }}</p>
+                </div>
+              </article>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          {% for related_product in collections.all.products limit: 4 %}
+            {% if related_product.id != product.id %}
+              <article class="product-card">
+                <div class="image">
+                  <a href="{{ related_product.url }}">
+                    {% if related_product.featured_image %}
+                      {{ related_product.featured_image | image_url: width: 500 | image_tag: alt: related_product.title }}
+                    {% else %}
+                      <img src="{{ 'assety-img-product.png' | asset_url }}" alt="">
+                    {% endif %}
+                  </a>
+                </div>
+                <div class="copy">
+                  <h3><a href="{{ related_product.url }}">{{ related_product.title }}</a></h3>
+                  <p class="muted">{{ related_product.vendor }}</p>
+                </div>
+              </article>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </section>
+</main>
+
+{% schema %}
+{
+  "name": "Main Product B2B",
+  "settings": [
+    {
+      "type": "text",
+      "id": "rating_label",
+      "label": "Label oceny",
+      "default": "5.0 (24 opinie)"
+    },
+    {
+      "type": "text",
+      "id": "add_to_cart_label",
+      "label": "Label przycisku koszyka",
+      "default": "Dodaj do koszyka"
+    },
+    {
+      "type": "text",
+      "id": "related_title",
+      "label": "Tytuł produktów powiązanych",
+      "default": "Produkty, które mogą Ci się spodobać"
+    },
+    {
+      "type": "textarea",
+      "id": "description_fallback",
+      "label": "Fallback opisu produktu",
+      "default": "Produkt TrichoPartner wspiera terapię gabinetową i sprzedaż domową. Uzupełnij opis w Shopify, aby w tym miejscu wyświetlić pełne działanie, składniki aktywne i rekomendacje stosowania."
+    }
+  ]
+}
+{% endschema %}

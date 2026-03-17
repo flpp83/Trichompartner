@@ -1,0 +1,14 @@
+[
+  {
+    "id": 682438164806,
+    "handle": "frontpage",
+    "title": "Strona główna",
+    "updated_at": "2026-03-12T09:42:51+01:00",
+    "body_html": null,
+    "published_at": "2026-03-12T09:42:49+01:00",
+    "sort_order": "best-selling",
+    "template_suffix": null,
+    "published_scope": "global",
+    "admin_graphql_api_id": "gid://shopify/Collection/682438164806"
+  }
+]

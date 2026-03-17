@@ -1,0 +1,106 @@
+{% assign auth_templates = 'collection,product,search,article,blog,cart,page-o-nas,page-kontakt,page-szkolenia,page-regulamin,page-podcasty,customers-account' | split: ',' %}
+{% assign template_key = template.name %}
+{% if template.directory == 'customers' %}
+  {% assign template_key = 'customers-' | append: template.name %}
+{% elsif template.suffix != blank %}
+  {% assign template_key = template.name | append: '-' | append: template.suffix %}
+{% endif %}
+{% assign is_auth = false %}
+{% if auth_templates contains template_key %}
+  {% assign is_auth = true %}
+{% endif %}
+{% assign main_menu = linklists[settings.main_menu] %}
+{% assign category_menu = linklists[settings.category_menu] %}
+{% assign account_manager_name = settings.account_manager_name | default: 'Klaudia Nowak' %}
+{% assign public_topbar_text = settings.public_topbar_text | default: 'Skontaktuj się z nami i zostań naszym Partnerem' %}
+{% assign partner_password_placeholder = settings.partner_password_placeholder | default: 'Hasło partnera' %}
+{% assign partner_cta_label = settings.partner_cta_label | default: 'Zostań partnerem' %}
+{% assign favorites_url = settings.favorites_url | default: '/pages/ulubione' %}
+{% assign header_search_placeholder = settings.header_search_placeholder | default: 'Szukaj produktów' %}
+
+{% if is_auth %}
+  <div class="auth-topbar">
+    <div class="container">
+      <div class="partner-meta"><img src="{{ 'assety-img-frame-1707482463.png' | asset_url }}" alt="">{{ account_manager_name }}, Twój opiekun</div>
+      <div class="topbar-contact">
+        <span><img src="{{ 'assety-extracted-contact-17-linear-shopping-ecommerce-bag-4.png' | asset_url }}" alt="">{{ settings.partner_phone }}</span>
+        <span><img src="{{ 'assety-extracted-contact-17-linear-shopping-ecommerce-vector.png' | asset_url }}" alt="">{{ settings.partner_email }}</span>
+      </div>
+    </div>
+  </div>
+  <header class="auth-header">
+    <div class="container">
+      <div class="home-logo"><a href="{{ routes.root_url }}"><img src="{{ 'assety-img-frame-1707482456-1.png' | asset_url }}" alt="{{ shop.name }}"></a></div>
+      <nav class="home-nav auth-nav">
+        {% if main_menu.links != blank %}
+          {% for link in main_menu.links limit: 5 %}
+            <a{% if link.links != blank %} class="nav-with-caret"{% endif %} href="{{ link.url }}">{{ link.title }}{% if link.links != blank %} <span aria-hidden="true"></span>{% endif %}</a>
+          {% endfor %}
+        {% else %}
+          <a href="{{ routes.collections_url }}">Sklep</a>
+          <a href="/pages/szkolenia">Szkolenia</a>
+          <a href="/pages/o-nas">O nas</a>
+          <a class="nav-with-caret" href="{{ routes.blogs_url }}">Wiedza <span aria-hidden="true"></span></a>
+          <a href="/pages/kontakt">Kontakt</a>
+        {% endif %}
+      </nav>
+      <div class="auth-user-links">
+        <a href="{{ routes.account_url }}"><img src="{{ 'assety-extracted-vuesax-linear-user-square.png' | asset_url }}" alt="">Konto</a>
+        <a href="{{ favorites_url }}"><img src="{{ 'assety-extracted-vuesax-linear-heart.png' | asset_url }}" alt="">Ulubione</a>
+        <a href="{{ routes.cart_url }}"><img src="{{ 'assety-extracted-layout-242-vuesax-linear-bag-happy.png' | asset_url }}" alt="">Koszyk</a>
+      </div>
+    </div>
+  </header>
+  <div class="category-strip">
+    <div class="container">
+      <nav class="category-links">
+        {% if category_menu.links != blank %}
+          {% for link in category_menu.links limit: 7 %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {% endfor %}
+        {% else %}
+          <a href="{{ routes.collections_url }}">Brak porostu</a><a href="{{ routes.collections_url }}">Keratozy</a><a href="{{ routes.collections_url }}">Łojotok</a><a href="{{ routes.collections_url }}">Sucha skóra głowy</a><a href="{{ routes.collections_url }}">Wrażliwa skóra głowy</a><a href="{{ routes.collections_url }}">Wypadanie włosów</a><a href="{{ routes.collections_url }}">Zniszczone włosy</a>
+        {% endif %}
+      </nav>
+      <form action="{{ routes.search_url }}" method="get" class="category-search">
+        <input type="search" name="q" placeholder="{{ header_search_placeholder }}" aria-label="{{ header_search_placeholder }}">
+      </form>
+    </div>
+  </div>
+{% else %}
+  <div class="home-topbar">
+    <div class="container">
+      <span>{{ public_topbar_text }}</span>
+      <div class="topbar-contact">
+        <span><img src="{{ 'assety-extracted-contact-17-linear-shopping-ecommerce-bag-4.png' | asset_url }}" alt="">{{ settings.partner_phone }}</span>
+        <span><img src="{{ 'assety-extracted-contact-17-linear-shopping-ecommerce-vector.png' | asset_url }}" alt="">{{ settings.partner_email }}</span>
+      </div>
+    </div>
+  </div>
+  <header class="home-header">
+    <div class="container">
+      <div class="home-logo"><a href="{{ routes.root_url }}"><img src="{{ 'assety-img-frame-1707482456-1.png' | asset_url }}" alt="{{ shop.name }}"></a></div>
+      <nav class="home-nav">
+        {% if main_menu.links != blank %}
+          {% for link in main_menu.links limit: 5 %}
+            <a{% if link.links != blank %} class="nav-with-caret"{% endif %} href="{{ link.url }}">{{ link.title }}{% if link.links != blank %} <span aria-hidden="true"></span>{% endif %}</a>
+          {% endfor %}
+        {% else %}
+          <a href="{{ routes.collections_url }}">Sklep</a>
+          <a href="/pages/szkolenia">Szkolenia</a>
+          <a href="/pages/o-nas">O nas</a>
+          <a class="nav-with-caret" href="{{ routes.blogs_url }}">Wiedza <span aria-hidden="true"></span></a>
+          <a href="/pages/kontakt">Kontakt</a>
+        {% endif %}
+      </nav>
+      <div class="home-actions">
+        <a class="home-link" href="{{ routes.account_login_url }}"><img src="{{ 'assety-extracted-vuesax-linear-user-square.png' | asset_url }}" alt="">Zaloguj się</a>
+        <a class="home-link register-link" href="{{ routes.account_register_url }}"><img src="{{ 'assety-img-frame-1707482463.png' | asset_url }}" alt="">Zarejestruj się</a>
+        <form class="auth-form" data-auth-form>
+          <input type="password" placeholder="{{ partner_password_placeholder }}">
+          <button class="button" type="submit">{{ partner_cta_label }} <span aria-hidden="true">→</span></button>
+        </form>
+      </div>
+    </div>
+  </header>
+{% endif %}

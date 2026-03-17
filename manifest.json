@@ -1,0 +1,43 @@
+{
+  "shop": "trichom.myshopify.com",
+  "api_version": "2026-01",
+  "generated_at": "2026-03-13T08:45:13.779Z",
+  "parts": {
+    "theme": {
+      "status": "skipped",
+      "reason": "not_requested"
+    },
+    "pages": {
+      "status": "ok",
+      "count": 6
+    },
+    "blogs": {
+      "status": "ok",
+      "blogs": 1,
+      "articles": 0
+    },
+    "menus": {
+      "status": "ok",
+      "count": 5
+    },
+    "products": {
+      "status": "ok",
+      "count": 0
+    },
+    "collections": {
+      "status": "ok",
+      "custom": 1,
+      "smart": 0,
+      "collects": 0
+    },
+    "redirects": {
+      "status": "ok",
+      "count": 0
+    }
+  },
+  "theme": {
+    "id": 189261971782,
+    "name": "trichopartner-shopify-theme",
+    "role": "main"
+  }
+}

@@ -1,0 +1,42 @@
+<main>
+  <section class="page-hero"><div class="container"><span class="tag">Kontakt</span><h1>Skontaktuj sie z nami</h1></div></section>
+  <section class="section-tight">
+    <div class="container contact-layout contact-page-layout">
+      <article class="form-card contact-form-surface">
+        {% form 'contact', class: 'form-grid' %}
+          <div class="field full"><label>Twoje imie</label><input name="contact[name]" placeholder="Wpisz swoje imie"></div>
+          <div class="field full"><label>Twoj adres e-mail</label><input name="contact[email]" type="email" placeholder="Wpisz adres e-mail"></div>
+          <div class="field full"><label>Nazwa firmy</label><input name="contact[company]" placeholder="Wpisz nazwe firmy"></div>
+          <div class="field full"><label>Tresc wiadomosci</label><textarea name="contact[body]" placeholder="Napisz swoja wiadomosc"></textarea></div>
+          <div class="field full contact-consent"><label><input type="checkbox">Wyrazam zgode na kontakt w sprawie przedstawienia oferty wspolpracy oraz obslugi mojego zapytania przez zespol Trichopartner.</label></div>
+          <div class="field full"><button class="button" type="submit">Wyslij wiadomosc <span aria-hidden="true">→</span></button></div>
+        {% endform %}
+      </article>
+      <article class="contact-map-card">
+        <img src="{{ 'assety-extracted-contact-7-frame-1707482316.png' | asset_url }}" alt="Mapa Warszawy">
+      </article>
+    </div>
+  </section>
+  <section class="section-tight contact-info-band">
+    <div class="container grid-3">
+      <article class="contact-info-card">
+        <img src="{{ 'assety-extracted-vuesax-linear-user-square.png' | asset_url }}" alt="">
+        <h3>Adres e-mail</h3>
+        <p>Napisz do nas, jesli chcesz porozmawiac o ofercie, wdrozeniu marki lub zalozeniu konta partnera.</p>
+        <a href="mailto:zamowienia@trichopartner.pl">zamowienia@trichopartner.pl</a>
+      </article>
+      <article class="contact-info-card">
+        <img src="{{ 'assety-extracted-vuesax-linear-setting-2.png' | asset_url }}" alt="">
+        <h3>Lokalizacja</h3>
+        <p>Biuro obslugi partnerow i zamowien dziala w Warszawie. Tu koordynujemy kontakt, logistyke i wsparcie wdrozeniowe.</p>
+        <strong>ul. Kolejowa 43 lok U25, 01-210 Warszawa</strong>
+      </article>
+      <article class="contact-info-card">
+        <img src="{{ 'assety-extracted-contact-17-linear-shopping-ecommerce-bag-4.png' | asset_url }}" alt="">
+        <h3>Numer telefonu</h3>
+        <p>Zadzwon, jesli chcesz szybciej omowic wspolprace, dostepnosc produktow lub status zamowienia.</p>
+        <a href="tel:+48732059134">+48 732 059 134</a>
+      </article>
+    </div>
+  </section>
+</main>

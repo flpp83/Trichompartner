@@ -1,0 +1,45 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Przejdź do treści",
+      "refresh_page": "Odśwież stronę"
+    },
+    "meta": {
+      "tags": "Tagi",
+      "page": "Strona"
+    },
+    "search": {
+      "search": "Szukaj"
+    }
+  },
+  "blogs": {
+    "article": {
+      "read_more": "Czytaj dalej"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Koszyk",
+      "subtotal": "Podsumowanie",
+      "checkout": "Przejdź do podsumowania",
+      "empty": "Koszyk jest pusty"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Konto klienta",
+      "logout": "Wyloguj się"
+    },
+    "login_page": {
+      "title": "Zaloguj się",
+      "email": "Email",
+      "password": "Hasło",
+      "submit": "Zaloguj się",
+      "forgot_password": "Nie pamiętasz hasła?"
+    },
+    "register": {
+      "title": "Utwórz konto",
+      "submit": "Zarejestruj się"
+    }
+  }
+}

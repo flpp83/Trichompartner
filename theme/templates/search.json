@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-search-b2b",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

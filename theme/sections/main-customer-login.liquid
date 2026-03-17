@@ -1,0 +1,114 @@
+<main class="home-body login-page">
+  <div class="split-layout login-layout">
+    <section class="split-media login-visual">
+      <div class="login-visual-top"></div>
+      <div class="login-visual-bottom">
+        {% if section.settings.visual_image != blank %}
+          {{ section.settings.visual_image | image_url: width: 1800 | image_tag: alt: section.settings.title }}
+        {% else %}
+          <img src="{{ 'assety-img-v2.png' | asset_url }}" alt="">
+        {% endif %}
+      </div>
+    </section>
+    <section class="split-copy">
+      <div style="width:min(100%,520px);">
+        <a class="brand split-brand-lockup" href="{{ routes.root_url }}"><img src="{{ 'assety-img-frame-1707482456-1.png' | asset_url }}" alt="{{ shop.name }}"></a>
+        <span class="tag">{{ section.settings.eyebrow }}</span>
+        <h1>{{ section.settings.title }}</h1>
+        <p>{{ section.settings.lead }}</p>
+        {% form 'customer_login', class: 'form-card' %}
+          <div class="field">
+            <label for="CustomerEmail">{{ section.settings.email_label }}</label>
+            <input id="CustomerEmail" type="email" name="customer[email]" autocomplete="email" placeholder="{{ section.settings.email_placeholder }}">
+          </div>
+          <div class="field" style="margin-top:16px;">
+            <label for="CustomerPassword">{{ section.settings.password_label }}</label>
+            <input id="CustomerPassword" type="password" name="customer[password]" autocomplete="current-password" placeholder="{{ section.settings.password_placeholder }}">
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+            <button class="button" type="submit">{{ section.settings.submit_label }}</button>
+            <a class="small-link" href="{{ routes.account_register_url }}">{{ section.settings.register_link_label }}</a>
+          </div>
+          {% if form.errors %}
+            <p class="muted" style="margin-top:14px;">{{ form.errors | default_errors }}</p>
+          {% else %}
+            <p class="muted" style="margin-top:14px;">{{ section.settings.helper_text }}</p>
+          {% endif %}
+        {% endform %}
+      </div>
+    </section>
+  </div>
+</main>
+
+{% schema %}
+{
+  "name": "Customer Login",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "visual_image",
+      "label": "Obraz po lewej"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Logowanie B2B"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Tytuł",
+      "default": "Zaloguj się"
+    },
+    {
+      "type": "textarea",
+      "id": "lead",
+      "label": "Lead",
+      "default": "Po zalogowaniu uzyskasz dostęp do cen, historii zamówień oraz materiałów wspierających sprzedaż i terapię."
+    },
+    {
+      "type": "text",
+      "id": "helper_text",
+      "label": "Tekst pomocniczy",
+      "default": "Wpisz hasło partnera, aby odblokować strefę B2B."
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Label pola e-mail",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Placeholder pola e-mail",
+      "default": "gabinet@firma.pl"
+    },
+    {
+      "type": "text",
+      "id": "password_label",
+      "label": "Label pola hasła",
+      "default": "Hasło partnera"
+    },
+    {
+      "type": "text",
+      "id": "password_placeholder",
+      "label": "Placeholder pola hasła",
+      "default": "Wpisz hasło partnera"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Label przycisku logowania",
+      "default": "Zaloguj się"
+    },
+    {
+      "type": "text",
+      "id": "register_link_label",
+      "label": "Label linku rejestracji",
+      "default": "Utwórz konto"
+    }
+  ]
+}
+{% endschema %}

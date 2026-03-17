@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-cart-b2b",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

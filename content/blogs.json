@@ -1,0 +1,15 @@
+[
+  {
+    "id": 122307313990,
+    "handle": "aktualnosci",
+    "title": "Aktualności",
+    "updated_at": "2026-03-12T09:42:48+01:00",
+    "commentable": "no",
+    "feedburner": null,
+    "feedburner_location": null,
+    "created_at": "2026-03-12T09:42:48+01:00",
+    "template_suffix": null,
+    "tags": "",
+    "admin_graphql_api_id": "gid://shopify/Blog/122307313990"
+  }
+]

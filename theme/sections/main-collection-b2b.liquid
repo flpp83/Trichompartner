@@ -1,0 +1,123 @@
+<main class="auth-layout-body shop-auth-page">
+  {% assign category_menu = linklists[settings.category_menu] %}
+  <section class="shop-hero">
+    <div class="container">
+      <div class="shop-hero-head">
+        <div>
+          <p class="eyebrow-blue">{{ section.settings.eyebrow }}</p>
+          <h1>{{ collection.title | default: 'Nasze produkty' }}</h1>
+        </div>
+        <div class="catalog-toolbar shop-toolbar">
+          <form action="{{ routes.search_url }}" method="get" class="catalog-search search-icon">
+            <input type="search" name="q" placeholder="{{ section.settings.search_placeholder }}" aria-label="{{ section.settings.search_placeholder }}">
+          </form>
+          <div class="view-switch shop-view-switch" aria-hidden="true"><span class="active">▦</span><span>☰</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-tight shop-catalog">
+    <div class="container grid-sidebar shop-grid">
+      <aside class="filters shop-filters">
+        <div class="shop-filter-group">
+          <h3>{{ section.settings.filter_title }}</h3>
+          {% if category_menu.links != blank %}
+            {% for link in category_menu.links limit: 7 %}
+              <label class="filter-option{% if forloop.first or forloop.index == 3 %} active{% endif %}"><input type="checkbox"{% if forloop.first or forloop.index == 3 %} checked{% endif %}>{{ link.title }} <span>({{ forloop.index | plus: 10 }})</span></label>
+            {% endfor %}
+          {% else %}
+            <label class="filter-option active"><input type="checkbox" checked>Brak porostu <span>(17)</span></label>
+            <label class="filter-option"><input type="checkbox">Keratozy <span>(11)</span></label>
+            <label class="filter-option active"><input type="checkbox" checked>Łojotok <span>(22)</span></label>
+            <label class="filter-option"><input type="checkbox">Sucha skóra głowy <span>(11)</span></label>
+            <label class="filter-option"><input type="checkbox">Wrażliwa skóra głowy <span>(11)</span></label>
+          {% endif %}
+        </div>
+      </aside>
+      <div>
+        <div class="product-grid shop-product-grid">
+          {% for product in collection.products limit: 18 %}
+            <article class="product-card shop-product-card">
+              <button class="plus-badge" type="button" aria-label="Dodaj">+</button>
+              <div class="image">
+                <a href="{{ product.url }}">
+                  {% if product.featured_image %}
+                    {{ product.featured_image | image_url: width: 640 | image_tag: alt: product.title }}
+                  {% else %}
+                    <img src="{{ 'assety-img-product.png' | asset_url }}" alt="">
+                  {% endif %}
+                </a>
+              </div>
+              <div class="copy">
+                <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+                <strong>{{ product.price | money }}</strong>
+              </div>
+            </article>
+          {% else %}
+            {% for fallback_product in collections.all.products limit: 12 %}
+              <article class="product-card shop-product-card">
+                <button class="plus-badge" type="button" aria-label="Dodaj">+</button>
+                <div class="image">
+                  <a href="{{ fallback_product.url }}">
+                    {% if fallback_product.featured_image %}
+                      {{ fallback_product.featured_image | image_url: width: 640 | image_tag: alt: fallback_product.title }}
+                    {% else %}
+                      <img src="{{ 'assety-img-product.png' | asset_url }}" alt="">
+                    {% endif %}
+                  </a>
+                </div>
+                <div class="copy"><h3><a href="{{ fallback_product.url }}">{{ fallback_product.title }}</a></h3><strong>{{ fallback_product.price | money }}</strong></div>
+              </article>
+            {% else %}
+              {% for i in (1..12) %}
+                <article class="product-card shop-product-card">
+                  <button class="plus-badge" type="button" aria-label="Dodaj">+</button>
+                  <div class="image"><img src="{{ 'assety-img-product.png' | asset_url }}" alt=""></div>
+                  <div class="copy"><h3>{{ section.settings.empty_product_title }}</h3><strong>{{ section.settings.empty_product_price }}</strong></div>
+                </article>
+              {% endfor %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% schema %}
+{
+  "name": "Main Collection B2B",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Sklep"
+    },
+    {
+      "type": "text",
+      "id": "filter_title",
+      "label": "Tytuł filtrów",
+      "default": "Twoje potrzeby"
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Placeholder wyszukiwarki",
+      "default": "Szukaj produktów"
+    },
+    {
+      "type": "text",
+      "id": "empty_product_title",
+      "label": "Fallback tytułu produktu",
+      "default": "Produkt z katalogu"
+    },
+    {
+      "type": "text",
+      "id": "empty_product_price",
+      "label": "Fallback ceny produktu",
+      "default": "239,00 zł"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,119 @@
+[
+  {
+    "name": "Theme settings",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "main_menu",
+        "label": "Main menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_menu",
+        "label": "Footer menu"
+      },
+      {
+        "type": "link_list",
+        "id": "category_menu",
+        "label": "Category menu"
+      },
+      {
+        "type": "text",
+        "id": "partner_phone",
+        "label": "Phone",
+        "default": "+48 732 059 134"
+      },
+      {
+        "type": "text",
+        "id": "partner_email",
+        "label": "Email",
+        "default": "zamowienia@trichopartner.pl"
+      },
+      {
+        "type": "text",
+        "id": "public_topbar_text",
+        "label": "Tekst górnego paska",
+        "default": "Skontaktuj się z nami i zostań naszym Partnerem"
+      },
+      {
+        "type": "text",
+        "id": "partner_password_placeholder",
+        "label": "Placeholder pola hasła partnera",
+        "default": "Hasło partnera"
+      },
+      {
+        "type": "text",
+        "id": "partner_cta_label",
+        "label": "Label CTA partnera",
+        "default": "Zostań partnerem"
+      },
+      {
+        "type": "url",
+        "id": "favorites_url",
+        "label": "URL ulubionych"
+      },
+      {
+        "type": "text",
+        "id": "header_search_placeholder",
+        "label": "Placeholder wyszukiwarki w headerze",
+        "default": "Szukaj produktów"
+      },
+      {
+        "type": "url",
+        "id": "contact_page_url",
+        "label": "URL strony kontaktowej"
+      },
+      {
+        "type": "text",
+        "id": "account_manager_name",
+        "label": "Opiekun B2B",
+        "default": "Klaudia Nowak"
+      },
+      {
+        "type": "textarea",
+        "id": "popular_search_terms",
+        "label": "Popularne frazy",
+        "default": "szampon\nwypadanie włosów\nmaski\nalpha\nnawilżenie"
+      },
+      {
+        "type": "textarea",
+        "id": "popular_brands",
+        "label": "Popularne marki",
+        "default": "Molecular Trichology\nNourkrin\nNeofollics\nAlcantara\nInnovatis"
+      },
+      {
+        "type": "text",
+        "id": "podcast_blog_handle",
+        "label": "Blog z podcastami",
+        "default": "aktualnosci"
+      },
+      {
+        "type": "collection",
+        "id": "cart_featured_collection",
+        "label": "Kolekcja polecana w koszyku"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube",
+        "label": "YouTube URL"
+      },
+      {
+        "type": "text",
+        "id": "footer_copyright",
+        "label": "Stopka copyright",
+        "default": "Trichopartner – Wyższy poziom trychologii. Wszelkie prawa zastrzeżone."
+      }
+    ]
+  }
+]
